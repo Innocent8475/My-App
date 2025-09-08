@@ -1,5 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head><title>My Capacitor App</title></head>
-<body><h1>Hello, Capacitor!</h1></body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Capacitor App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <h1>Hello from Capacitor!</h1>
+
+  <script type="module">
+    import { StatusBar } from '@capacitor/status-bar';
+
+    StatusBar.setBackgroundColor({ color: '#ffffff' }); // white background
+    StatusBar.setStyle({ style: 'DARK' }); // dark icons
+  </script>
+</body>
 </html>
