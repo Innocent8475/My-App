@@ -2,17 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>My Capacitor App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset and App-like base styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000; /* True black background */
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; /* Prevent web-like scrolling */
+    }
+
+    /* Simple App Header */
+    header {
+      padding: env(safe-area-inset-top) 20px 15px; /* Accounts for Status Bar */
+      background: #121212;
+      border-bottom: 1px solid #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* Main Content Area */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card {
+      background: #1c1c1e;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello from Capacitor!</h1>
+
+  <header>
+    <h1>Capacitor App</h1>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Welcome Back</h2>
+      <p style="color: #8e8e93;">The status bar is white with dark icons.</p>
+    </div>
+  </main>
 
   <script type="module">
-    import { StatusBar } from '@capacitor/status-bar';
+    // Make sure you have installed: npm install @capacitor/status-bar @capacitor/core
+    import { StatusBar, Style } from '@capacitor/status-bar';
 
-    StatusBar.setBackgroundColor({ color: '#ffffff' }); // white background
-    StatusBar.setStyle({ style: 'DARK' }); // dark icons
+    const setupStatusBar = async () => {
+      try {
+        // Set background color to White
+        await StatusBar.setBackgroundColor({ color: '#FFFFFF' });
+        
+        // Set icons to Dark (best for white backgrounds)
+        await StatusBar.setStyle({ style: Style.Dark });
+        
+        // Ensure it is visible
+        await StatusBar.show();
+      } catch (e) {
+        console.warn('StatusBar not available in web browser', e);
+      }
+    };
+
+    setupStatusBar();
   </script>
 </body>
 </html>
